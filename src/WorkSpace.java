@@ -17,11 +17,9 @@ public class WorkSpace {
         for (int k = 0; k < workSpace[0].length - 1; k++) {
             this.workSpace[0][k] = edgeTemp.top;
         }
-
         for (int k = 0; k < workSpace[0].length - 1; k++) {
             this.workSpace[workSpace.length - 1][k] = edgeTemp.bottom;
         }
-
         for (int i = 0; i < workSpace.length - 1; i++) {
             this.workSpace[i][0] = edgeTemp.left;
         }
@@ -35,28 +33,58 @@ public class WorkSpace {
     }
 
     public void iteration() {
-        Double[][] workSpaceBeforeIteration = new Double[workSpace.length][workSpace[0].length];
+        Double[][] workspaceToIteration = new Double[workSpace.length][workSpace[0].length];
         double insideValue;
 
-        for (int i = 0; i < workSpaceBeforeIteration.length; i++) {
-            for (int k = 0; k < workSpaceBeforeIteration[i].length; k++) {
-                workSpaceBeforeIteration[i][k] = workSpace[i][k];
+        for (int i = 0; i < workspaceToIteration.length; i++) {
+            for (int k = 0; k < workspaceToIteration[i].length; k++) {
+                workspaceToIteration[i][k] = workSpace[i][k];
             }
         }
 
-        for (int i = 1; i < workSpaceBeforeIteration.length - 1; i++) {
-            for (int k = 1; k < workSpaceBeforeIteration[i].length - 1; k++) {
-                insideValue = (workSpaceBeforeIteration[i - 1][k - 1] + workSpaceBeforeIteration[i - 1][k + 1] + workSpaceBeforeIteration[i + 1][k - 1] + workSpaceBeforeIteration[i + 1][k + 1]) / 4;
+        for (int i = 1; i < workspaceToIteration.length - 1; i++) {
+            for (int k = 1; k < workspaceToIteration[i].length - 1; k++) {
+                insideValue = (workspaceToIteration[i - 1][k - 1] + workspaceToIteration[i - 1][k + 1] + workspaceToIteration[i + 1][k - 1] + workspaceToIteration[i + 1][k + 1]) / 4;
                 this.workSpace[i][k] = insideValue;
             }
         }
     }
 
-    public String doStringa() {
+    public String doStringa(String typofEdge) {
+        TypEdge edge = new TypEdge(typofEdge);
+        String[][] workSpaceToString = new String[workSpace.length + 2][workSpace[0].length + 2];
+
+
+        for (int k = 0; k < workSpaceToString[0].length; k++) {
+            workSpaceToString[0][k] = edge.typTop;
+        }
+
+        for (int k = 0; k < workSpaceToString[0].length; k++) {
+            workSpaceToString[workSpaceToString.length - 1][k] = edge.typBottom;
+        }
+
+        for (int i = 0; i < workSpaceToString.length; i++) {
+            workSpaceToString[i][0] = edge.typRight;
+        }
+        for (int i = 0; i < workSpaceToString.length; i++) {
+            workSpaceToString[i][workSpaceToString[i].length - 1] = edge.typLeft;
+        }
+
+        workSpaceToString[0][0] = "/";
+        workSpaceToString[0][workSpaceToString[0].length - 1] = "\\";
+        workSpaceToString[workSpaceToString.length - 1][0] = "\\";
+        workSpaceToString[workSpaceToString.length - 1][workSpaceToString[0].length - 1] = "/";
+
+        for (int i = 1; i < workSpaceToString.length - 1; i++) {
+            for (int k = 1; k < workSpaceToString[1].length - 1; k++) {
+                workSpaceToString[i][k] = String.format("%.2f", workSpace[i - 1][k - 1]);
+            }
+        }
+
         String modelInString = " ";
-        for (int i = 0; i < workSpace.length; i++) {
-            for (int k = 0; k < workSpace[i].length; k++) {
-                modelInString += String.format("%.2f", this.workSpace[i][k]) + "   ";
+        for (int i = 0; i < workSpaceToString.length; i++) {
+            for (int k = 0; k < workSpaceToString[i].length; k++) {
+                modelInString += workSpaceToString[i][k] + "   ";
             }
             modelInString += '\n' + " ";
         }
@@ -64,32 +92,3 @@ public class WorkSpace {
     }
 
 }
-
-
-    /*public void generateNameOfEdge(String typofEdge) {
-        TypEdge edge = new TypEdge(typofEdge);
-
-        for (int k = 0; k < workSpace[0].length; k++) {
-            this.workSpace[0][k] = edge.typTop;
-        }
-
-        for (int k = 0; k < workSpace[0].length; k++) {
-            this.workSpace[workSpace.length - 1][k] = edge.typBottom;
-        }
-
-        for (int i = 0; i < workSpace.length; i++) {
-            this.workSpace[i][0] = edge.typRight;
-        }
-        for (int i = 0; i < workSpace.length; i++) {
-            this.workSpace[i][workSpace[i].length - 1] = edge.typLeft;
-        }
-
-        this.workSpace[0][0] = "/";
-        this.workSpace[0][workSpace[0].length - 1] = "\\";
-        this.workSpace[workSpace.length - 1][0] = "\\";
-        this.workSpace[workSpace.length - 1][workSpace[0].length - 1] = "/";
-    }*/
-
-
-
-
