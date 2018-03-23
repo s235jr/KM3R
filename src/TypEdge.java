@@ -6,7 +6,7 @@ public class TypEdge {
 
     TypEdge(String startOfTypEdge) {
         String[] edge = startOfTypEdge.split(" ");
-        this.typTop = edge[0];
+        this.typTop =  edge[0];
         this.typBottom = edge[1];
         this.typLeft = edge[2];
         this.typRight = edge[3];

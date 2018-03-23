@@ -4,7 +4,7 @@ public class Main {
         String startTempForEdge = "35.0 18.0 30.0 70.0"; // Top, Bottom, Left, Rigth
         String sizeOfModel = "10 10";    //width, heigth
         String insideGeneratorOfHeat = "5 5 20 25";   //firstCordOfCornet, secondCordOfCorner, width, heigth
-        int iteration = 25;  // estetycznie wygląda > 3
+        int iteration = 8;
 
         WorkSpace workSpace = new WorkSpace(sizeOfModel);
         workSpace.generateEdges(startTempForEdge);

@@ -54,13 +54,12 @@ public class WorkSpace {
         TypEdge edge = new TypEdge(typofEdge);
         String[][] workSpaceToString = new String[workSpace.length + 2][workSpace[0].length + 2];
 
-
         for (int k = 0; k < workSpaceToString[0].length; k++) {
-            workSpaceToString[0][k] = edge.typTop;
+            workSpaceToString[0][k] = String.format("%6s", edge.typTop);
         }
 
         for (int k = 0; k < workSpaceToString[0].length; k++) {
-            workSpaceToString[workSpaceToString.length - 1][k] = edge.typBottom;
+            workSpaceToString[workSpaceToString.length - 1][k] = String.format("%6s", edge.typBottom);
         }
 
         for (int i = 0; i < workSpaceToString.length; i++) {
@@ -77,7 +76,7 @@ public class WorkSpace {
 
         for (int i = 1; i < workSpaceToString.length - 1; i++) {
             for (int k = 1; k < workSpaceToString[1].length - 1; k++) {
-                workSpaceToString[i][k] = String.format("%.2f", workSpace[i - 1][k - 1]);
+                workSpaceToString[i][k] = String.format("%6.2f", workSpace[i - 1][k - 1]);
             }
         }
 
